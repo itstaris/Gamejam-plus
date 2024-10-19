@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch6gs4tu5ay3d"]
+
+[ext_resource type="Script" path="res://preferbs/plataform.gd" id="1_k7xvo"]
+[ext_resource type="Texture2D" uid="uid://j6fntm3nh6a7" path="res://Cavaleiro parado.png" id="2_71n1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdon2"]
+size = Vector2(33, 33)
+
+[node name="plataforma_movel" type="Node2D"]
+script = ExtResource("1_k7xvo")
+
+[node name="plataforma" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="plataforma"]
+texture = ExtResource("2_71n1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plataforma"]
+shape = SubResource("RectangleShape2D_wdon2")
