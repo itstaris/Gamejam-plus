@@ -1,0 +1,95 @@
+[gd_scene load_steps=18 format=3 uid="uid://by4dsq1rfkhhm"]
+
+[ext_resource type="Script" path="res://Scripts/LevelBehavior/level_4.gd" id="1_0we03"]
+[ext_resource type="PackedScene" uid="uid://djdap0d1en6ml" path="res://Scenes/Prefabs/Background.tscn" id="1_6ijg5"]
+[ext_resource type="PackedScene" uid="uid://6sg551wgh2cq" path="res://Scenes/Prefabs/Door.tscn" id="2_n0qcx"]
+[ext_resource type="PackedScene" uid="uid://bditos5277nbw" path="res://Scenes/Interface/DeathScreen.tscn" id="3_mjtwt"]
+[ext_resource type="PackedScene" uid="uid://bg668vc1434iy" path="res://Scenes/Prefabs/LevelLayout.tscn" id="4_8e6j1"]
+[ext_resource type="PackedScene" uid="uid://cnavx6ywmyghh" path="res://Scenes/Prefabs/Princess.tscn" id="5_xyvec"]
+[ext_resource type="PackedScene" uid="uid://duvvflyjce3r1" path="res://Scenes/Prefabs/Player.tscn" id="6_kkypb"]
+[ext_resource type="PackedScene" uid="uid://26lp33ahty17" path="res://Scenes/Interface/DeathCounter.tscn" id="7_1207h"]
+[ext_resource type="Texture2D" uid="uid://bfnjd5nbrg31c" path="res://Assets/Sprites/Knight/knight_head.png" id="8_kwrmj"]
+[ext_resource type="Script" path="res://Scripts/Interface/princess_head.gd" id="9_yyio5"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="10_wimjn"]
+[ext_resource type="Texture2D" uid="uid://cvxlk6mwkkd85" path="res://Assets/Sprites/Misc/lamp.png" id="11_supq1"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Palette.gdshader" id="11_upftj"]
+[ext_resource type="Texture2D" uid="uid://mtm8d1l32po5" path="res://Assets/Palettes/source_palette.png" id="12_fwcn7"]
+[ext_resource type="Texture2D" uid="uid://c7mfgodbdjgqi" path="res://Assets/Palettes/honey-milk.png" id="13_ock8x"]
+[ext_resource type="Texture2D" uid="uid://epcnc1uiar71" path="res://Assets/Sprites/Misc/light.png" id="14_vebq4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur5fr"]
+shader = ExtResource("11_upftj")
+shader_parameter/brightness = 0.0
+shader_parameter/source_palette = ExtResource("12_fwcn7")
+shader_parameter/target_palette = ExtResource("13_ock8x")
+
+[node name="Level4" type="Node2D"]
+script = ExtResource("1_0we03")
+
+[node name="Background" parent="." instance=ExtResource("1_6ijg5")]
+
+[node name="Door" parent="." instance=ExtResource("2_n0qcx")]
+position = Vector2(432, 48)
+next_scene = ExtResource("3_mjtwt")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(24, 184)
+
+[node name="LevelLayout" parent="." instance=ExtResource("4_8e6j1")]
+
+[node name="Princess" parent="." instance=ExtResource("5_xyvec")]
+position = Vector2(416, 208)
+
+[node name="Player" parent="." instance=ExtResource("6_kkypb")]
+position = Vector2(24, 184)
+
+[node name="DeathCounter" parent="." instance=ExtResource("7_1207h")]
+offset_left = 0.0
+offset_top = -16.0
+offset_right = 125.0
+offset_bottom = 84.0
+
+[node name="PrincessHead" type="Sprite2D" parent="."]
+position = Vector2(136, 24)
+texture = ExtResource("8_kwrmj")
+script = ExtResource("9_yyio5")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(224, 32)
+texture = ExtResource("11_supq1")
+hframes = 3
+
+[node name="LevelTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 140.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("10_wimjn")
+theme_override_font_sizes/normal_font_size = 24
+text = "Light"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Palette" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_ur5fr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="CanvasModulate"]
+position = Vector2(224, 65)
+scale = Vector2(0.84, 0.51)
+range_z_min = 0
+range_z_max = 0
+texture = ExtResource("14_vebq4")
+offset = Vector2(0, 200)

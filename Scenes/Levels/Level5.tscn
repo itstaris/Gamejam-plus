@@ -1,0 +1,79 @@
+[gd_scene load_steps=15 format=3 uid="uid://bmkefp5b2ouqi"]
+
+[ext_resource type="PackedScene" uid="uid://djdap0d1en6ml" path="res://Scenes/Prefabs/Background.tscn" id="1_cgmid"]
+[ext_resource type="PackedScene" uid="uid://6sg551wgh2cq" path="res://Scenes/Prefabs/Door.tscn" id="2_ovg3x"]
+[ext_resource type="PackedScene" uid="uid://bditos5277nbw" path="res://Scenes/Interface/DeathScreen.tscn" id="3_xcn2w"]
+[ext_resource type="PackedScene" uid="uid://bg668vc1434iy" path="res://Scenes/Prefabs/LevelLayout.tscn" id="4_b6tqr"]
+[ext_resource type="PackedScene" uid="uid://cnavx6ywmyghh" path="res://Scenes/Prefabs/Princess.tscn" id="5_2hcrk"]
+[ext_resource type="PackedScene" uid="uid://duvvflyjce3r1" path="res://Scenes/Prefabs/Player.tscn" id="6_46uh8"]
+[ext_resource type="PackedScene" uid="uid://26lp33ahty17" path="res://Scenes/Interface/DeathCounter.tscn" id="7_q7ka2"]
+[ext_resource type="Texture2D" uid="uid://bfnjd5nbrg31c" path="res://Assets/Sprites/Knight/knight_head.png" id="8_r7mpd"]
+[ext_resource type="Script" path="res://Scripts/Interface/princess_head.gd" id="9_hl1w0"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="10_bgcv3"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Palette.gdshader" id="11_hc6av"]
+[ext_resource type="Texture2D" uid="uid://mtm8d1l32po5" path="res://Assets/Palettes/source_palette.png" id="12_8jm2p"]
+[ext_resource type="Texture2D" uid="uid://bqqxwvevlaicy" path="res://Assets/Palettes/bluedream4.png" id="13_5is5c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gie28"]
+shader = ExtResource("11_hc6av")
+shader_parameter/brightness = 0.0
+shader_parameter/source_palette = ExtResource("12_8jm2p")
+shader_parameter/target_palette = ExtResource("13_5is5c")
+
+[node name="Level5" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("1_cgmid")]
+
+[node name="Door" parent="." instance=ExtResource("2_ovg3x")]
+position = Vector2(432, 48)
+next_scene = ExtResource("3_xcn2w")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(24, 184)
+
+[node name="LevelLayout" parent="." instance=ExtResource("4_b6tqr")]
+
+[node name="Princess" parent="." instance=ExtResource("5_2hcrk")]
+position = Vector2(416, 208)
+
+[node name="Player" parent="." instance=ExtResource("6_46uh8")]
+position = Vector2(24, 184)
+move_speed = 400.0
+jump_force = 400.0
+friction = 0.0
+
+[node name="DeathCounter" parent="." instance=ExtResource("7_q7ka2")]
+offset_left = 0.0
+offset_top = -16.0
+offset_right = 125.0
+offset_bottom = 84.0
+
+[node name="PrincessHead" type="Sprite2D" parent="."]
+position = Vector2(136, 24)
+texture = ExtResource("8_r7mpd")
+script = ExtResource("9_hl1w0")
+
+[node name="LevelTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 376.0
+offset_top = 104.0
+offset_right = 460.0
+offset_bottom = 136.0
+grow_horizontal = 2
+rotation = 1.5708
+theme_override_fonts/normal_font = ExtResource("10_bgcv3")
+theme_override_font_sizes/normal_font_size = 22
+text = "Slippery"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Palette" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_gie28")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

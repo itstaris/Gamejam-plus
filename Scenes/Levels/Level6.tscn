@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://5j4iymvnlye0"]
+
+[ext_resource type="Texture2D" uid="uid://b7bavabusd4am" path="res://Assets/Backgrounds/bg1.png" id="1_ov7is"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="2_ubi4m"]
+
+[node name="Level6" type="Node2D"]
+
+[node name="Solid" type="Sprite2D" parent="."]
+position = Vector2(240, 135)
+texture = ExtResource("1_ov7is")
+
+[node name="LevelTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 200.0
+offset_top = 120.0
+offset_right = 276.0
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_ubi4m")
+theme_override_font_sizes/normal_font_size = 24
+text = "Level 6"

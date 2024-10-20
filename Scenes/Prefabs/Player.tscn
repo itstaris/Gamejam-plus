@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://duvvflyjce3r1"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_clei8"]
+[ext_resource type="Script" path="res://Scripts/Managers/input_capture.gd" id="2_bot8x"]
+[ext_resource type="Texture2D" uid="uid://xyhucx8heii1" path="res://Assets/Sprites/Knight/knight_idle_0.png" id="2_c640u"]
+[ext_resource type="Texture2D" uid="uid://dtspbevmdm04l" path="res://Assets/Sprites/Knight/knight_idle_1.png" id="3_hgcg0"]
+[ext_resource type="Texture2D" uid="uid://d3hd3a7bilw8s" path="res://Assets/Sprites/Knight/knight_walk_0.png" id="5_12wyu"]
+[ext_resource type="Texture2D" uid="uid://bfc3851kaea4i" path="res://Assets/Sprites/Knight/knight_jump_1.png" id="5_xkqqy"]
+[ext_resource type="Texture2D" uid="uid://c3l8ai7mfje5p" path="res://Assets/Sprites/Knight/knight_walk_1.png" id="6_i6fkw"]
+[ext_resource type="Texture2D" uid="uid://c5rpx5xn5g1g7" path="res://Assets/Sprites/Knight/knight_walk_2.png" id="7_r2unk"]
+[ext_resource type="Texture2D" uid="uid://68jujo4sj0n8" path="res://Assets/Sprites/Knight/knight_walk_3.png" id="8_rd2v3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8f643"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c640u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hgcg0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xkqqy")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_12wyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i6fkw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r2unk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rd2v3")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gu2t"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uen1"]
+size = Vector2(32, 48)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_clei8")
+move_speed = 150.0
+
+[node name="InputCapture" type="Node" parent="."]
+script = ExtResource("2_bot8x")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8f643")
+animation = &"Walk"
+
+[node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8gu2t")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_5uen1")
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
