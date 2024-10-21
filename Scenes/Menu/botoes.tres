@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ddtmvu6c1h37d"]
+
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="1_6jk4a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78b4n"]
+bg_color = Color(0.290196, 0.141176, 0.501961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkp68"]
+bg_color = Color(0.114364, 0.0401601, 0.218953, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 0.556863, 0.501961, 1)
+Button/font_sizes/font_size = 22
+Button/fonts/font = ExtResource("1_6jk4a")
+Button/styles/normal = SubResource("StyleBoxFlat_78b4n")
+Button/styles/pressed = SubResource("StyleBoxFlat_fkp68")

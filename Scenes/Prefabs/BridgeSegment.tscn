@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cha86crar1pcv"]
+
+[ext_resource type="Script" path="res://Scripts/Platforms/bridge_segment.gd" id="1_1toqr"]
+[ext_resource type="Texture2D" uid="uid://c0gobk7p3b4d0" path="res://Assets/Sprites/Misc/bridge_segment.png" id="1_x3kit"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2h6v6"]
+radius = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hayrj"]
+radius = 8.0
+height = 22.0
+
+[node name="BridgeSegment" type="RigidBody2D"]
+mass = 2.0
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_1toqr")
+time_to_delete = 0.65
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_x3kit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2h6v6")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CapsuleShape2D_hayrj")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_body_entered"]

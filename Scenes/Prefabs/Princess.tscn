@@ -1,0 +1,82 @@
+[gd_scene load_steps=15 format=3 uid="uid://cnavx6ywmyghh"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/princess.gd" id="1_iglhi"]
+[ext_resource type="Texture2D" uid="uid://c8d30yu16g8k8" path="res://Assets/Sprites/Knight/PRINCESS/Princesa PB 1.png" id="2_aykyi"]
+[ext_resource type="Texture2D" uid="uid://b27tg55gp31yn" path="res://Assets/Sprites/Knight/PRINCESS/Princesa PB 2.png" id="3_bguxt"]
+[ext_resource type="Texture2D" uid="uid://dt2krcclk3h6o" path="res://Assets/Sprites/Knight/PRINCESS/Pisca PB1.png" id="4_gcnym"]
+[ext_resource type="Texture2D" uid="uid://df6sf787k3q55" path="res://Assets/Sprites/Knight/PRINCESS/Pisca PB2.png" id="5_s0aev"]
+[ext_resource type="Texture2D" uid="uid://c2cr64010bsps" path="res://Assets/Sprites/Knight/PRINCESS/Pisca PB3.png" id="6_ga5wu"]
+[ext_resource type="Texture2D" uid="uid://n4to51qo8nmk" path="res://Assets/Sprites/Knight/PRINCESS/Pisca PB4.png" id="7_qq1fy"]
+[ext_resource type="Texture2D" uid="uid://cyhiolbcuwwcx" path="res://Assets/Sprites/Knight/PRINCESS/Pisca PB5.png" id="8_e6v0h"]
+[ext_resource type="Texture2D" uid="uid://g2mdyclbtv51" path="res://Assets/Sprites/Knight/PRINCESS/brilho_3.png" id="9_hexh3"]
+[ext_resource type="Texture2D" uid="uid://daigpbpv5nanw" path="res://Assets/Sprites/Knight/PRINCESS/brilho_2.png" id="10_ejo1x"]
+[ext_resource type="Texture2D" uid="uid://bydhq5bji76i3" path="res://Assets/Sprites/Knight/PRINCESS/brilho_1.png" id="11_74j71"]
+[ext_resource type="Texture2D" uid="uid://cdqrg4fpqlqgo" path="res://Assets/Sprites/Knight/PRINCESS/brilho_0.png" id="12_c2as8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrgiq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aykyi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bguxt")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_gcnym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s0aev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ga5wu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qq1fy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_e6v0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hexh3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ejo1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_74j71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c2as8")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"katia",
+"speed": 11.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0aplr"]
+size = Vector2(32, 32)
+
+[node name="Princess" type="Area2D"]
+script = ExtResource("1_iglhi")
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nrgiq")
+animation = &"katia"
+autoplay = "Idle"
+frame = 9
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0aplr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]

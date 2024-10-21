@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgdgqebqh3nua"]
+
+[ext_resource type="Script" path="res://Scripts/LevelBehavior/Level_8.gd" id="1_jtwxk"]
+[ext_resource type="Texture2D" uid="uid://b7bavabusd4am" path="res://Assets/Backgrounds/bg1.png" id="2_1v07j"]
+[ext_resource type="Theme" uid="uid://ddtmvu6c1h37d" path="res://Scenes/Menu/botoes.tres" id="3_7c6c3"]
+[ext_resource type="PackedScene" uid="uid://26lp33ahty17" path="res://Scenes/Interface/DeathCounter.tscn" id="4_4xckt"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="5_ensef"]
+
+[sub_resource type="Theme" id="Theme_nu4m2"]
+default_font = ExtResource("5_ensef")
+default_font_size = 25
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jtwxk")
+
+[node name="Bg1" type="Sprite2D" parent="."]
+position = Vector2(240, 136)
+texture = ExtResource("2_1v07j")
+
+[node name="menu_button" type="Button" parent="Bg1"]
+offset_left = -160.0
+offset_top = 80.0
+offset_right = -32.0
+offset_bottom = 111.0
+size_flags_vertical = 8
+theme = ExtResource("3_7c6c3")
+text = "MENU"
+
+[node name="surpresa_button" type="Button" parent="Bg1"]
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 160.0
+offset_bottom = 111.0
+size_flags_vertical = 8
+theme = ExtResource("3_7c6c3")
+text = "SURPRISE"
+
+[node name="DeathCounter" parent="." instance=ExtResource("4_4xckt")]
+layout_mode = 1
+offset_left = -128.0
+offset_top = -95.0
+offset_right = -3.0
+offset_bottom = -8.0
+rotation = 6.28319
+scale = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.5
+offset_top = 24.0
+offset_right = 80.5
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = SubResource("Theme_nu4m2")
+text = "CONGRATULATIONS!"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Bg1/menu_button" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Bg1/surpresa_button" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=15 format=3 uid="uid://dyb2ls8roxp8q"]
+
+[ext_resource type="Script" path="res://Scripts/LevelBehavior/level_9.gd" id="1_aaeax"]
+[ext_resource type="PackedScene" uid="uid://djdap0d1en6ml" path="res://Scenes/Prefabs/Background.tscn" id="2_058ls"]
+[ext_resource type="PackedScene" uid="uid://6sg551wgh2cq" path="res://Scenes/Prefabs/Door.tscn" id="3_b8i0x"]
+[ext_resource type="PackedScene" uid="uid://bditos5277nbw" path="res://Scenes/Interface/DeathScreen.tscn" id="4_grqvt"]
+[ext_resource type="PackedScene" uid="uid://bg668vc1434iy" path="res://Scenes/Prefabs/LevelLayout.tscn" id="5_qdpff"]
+[ext_resource type="PackedScene" uid="uid://cnavx6ywmyghh" path="res://Scenes/Prefabs/Princess.tscn" id="6_v8u41"]
+[ext_resource type="PackedScene" uid="uid://duvvflyjce3r1" path="res://Scenes/Prefabs/Player.tscn" id="7_q4xwo"]
+[ext_resource type="PackedScene" uid="uid://26lp33ahty17" path="res://Scenes/Interface/DeathCounter.tscn" id="8_303sk"]
+[ext_resource type="Texture2D" uid="uid://crcs8hm2ownwq" path="res://Assets/Sprites/Knight/PRINCESS/Degolada PB.png" id="9_irvu5"]
+[ext_resource type="Script" path="res://Scripts/Interface/princess_head.gd" id="10_rxfam"]
+[ext_resource type="Texture2D" uid="uid://cvxlk6mwkkd85" path="res://Assets/Sprites/Misc/lamp.png" id="11_ikjl2"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="12_d5rk6"]
+[ext_resource type="Texture2D" uid="uid://epcnc1uiar71" path="res://Assets/Sprites/Misc/light.png" id="13_cuc04"]
+[ext_resource type="PackedScene" uid="uid://c4hmhd200d3oo" path="res://Scenes/Prefabs/LevelCamera.tscn" id="14_7hxul"]
+
+[node name="Level9" type="Node2D"]
+script = ExtResource("1_aaeax")
+
+[node name="Background" parent="." instance=ExtResource("2_058ls")]
+
+[node name="Door" parent="." instance=ExtResource("3_b8i0x")]
+position = Vector2(432, 48)
+next_scene = ExtResource("4_grqvt")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(24, 184)
+
+[node name="LevelLayout" parent="." instance=ExtResource("5_qdpff")]
+
+[node name="Princess" parent="." instance=ExtResource("6_v8u41")]
+position = Vector2(416, 208)
+
+[node name="Player" parent="." instance=ExtResource("7_q4xwo")]
+position = Vector2(24, 184)
+move_speed = 400.0
+jump_force = 400.0
+friction = 0.0
+inverted_controls = true
+delay = 12.0
+
+[node name="DeathCounter" parent="." instance=ExtResource("8_303sk")]
+offset_left = 0.0
+offset_top = -16.0
+offset_right = 125.0
+offset_bottom = 84.0
+
+[node name="PrincessHead" type="Sprite2D" parent="."]
+position = Vector2(460, 22)
+texture = ExtResource("9_irvu5")
+script = ExtResource("10_rxfam")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(224, 32)
+texture = ExtResource("11_ikjl2")
+hframes = 3
+
+[node name="LevelTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 25.0
+offset_top = 137.0
+offset_right = 134.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_constants/line_separation = 0
+theme_override_fonts/normal_font = ExtResource("12_d5rk6")
+theme_override_font_sizes/normal_font_size = 24
+text = "SURPRISE!"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="CanvasModulate"]
+position = Vector2(224, 65)
+scale = Vector2(0.84, 0.51)
+range_z_min = 0
+range_z_max = 0
+texture = ExtResource("13_cuc04")
+offset = Vector2(0, 200)
+
+[node name="LevelCamera" parent="." instance=ExtResource("14_7hxul")]
+unique_name_in_owner = true

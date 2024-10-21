@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bltahjp6p285k"]
+
+[ext_resource type="Script" path="res://Scripts/Managers/audio_manager.gd" id="1_6x3kl"]
+[ext_resource type="AudioStream" uid="uid://csqkcb6tdnuoj" path="res://Assets/Audio/sfx_jump.mp3" id="2_wwyy7"]
+[ext_resource type="AudioStream" uid="uid://dk0bij8spitx6" path="res://Assets/Audio/sfx_princess_get.mp3" id="3_k2dop"]
+[ext_resource type="AudioStream" uid="uid://cf8bdpr0gx0ht" path="res://Assets/Audio/sfx_death_2.mp3" id="4_3qmht"]
+[ext_resource type="AudioStream" uid="uid://c2vulcwvf0xua" path="res://Assets/Audio/sfx_level_clear.mp3" id="5_aongj"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_6x3kl")
+
+[node name="JumpSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_wwyy7")
+volume_db = -10.0
+
+[node name="PrincessGetSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_k2dop")
+volume_db = -5.0
+
+[node name="DeathSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3qmht")
+
+[node name="LevelClearSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aongj")

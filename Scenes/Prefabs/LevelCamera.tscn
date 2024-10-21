@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4hmhd200d3oo"]
+
+[ext_resource type="Script" path="res://Scripts/Interface/level_camera.gd" id="1_sumh5"]
+
+[node name="LevelCamera" type="Camera2D"]
+anchor_mode = 0
+script = ExtResource("1_sumh5")
+shake_fade = 15.0
+shaking = true

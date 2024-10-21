@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://edjruvo7ulrb"]
+
+[ext_resource type="Texture2D" uid="uid://b7bavabusd4am" path="res://Assets/Backgrounds/bg1.png" id="1_0uwwh"]
+[ext_resource type="Script" path="res://Scripts/LevelBehavior/level_10.gd" id="1_6qf4g"]
+[ext_resource type="Theme" uid="uid://ddtmvu6c1h37d" path="res://Scenes/Menu/botoes.tres" id="2_3r81e"]
+[ext_resource type="PackedScene" uid="uid://26lp33ahty17" path="res://Scenes/Interface/DeathCounter.tscn" id="3_wy854"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="4_0oaxn"]
+[ext_resource type="Texture2D" uid="uid://ckvgeb7etoo3m" path="res://Assets/Sprites/Misc/skull_gold.png" id="5_sju5x"]
+
+[sub_resource type="Theme" id="Theme_l125f"]
+default_font = ExtResource("4_0oaxn")
+default_font_size = 25
+
+[node name="Level10" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6qf4g")
+
+[node name="Bg1" type="Sprite2D" parent="."]
+position = Vector2(240, 136)
+texture = ExtResource("1_0uwwh")
+
+[node name="menu_button" type="Button" parent="Bg1"]
+offset_left = -67.0
+offset_top = 80.0
+offset_right = 61.0
+offset_bottom = 111.0
+size_flags_vertical = 8
+theme = ExtResource("2_3r81e")
+text = "MENU"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 111.0
+offset_top = 40.0
+offset_right = 386.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme = SubResource("Theme_l125f")
+text = "SUPER CONGRATULATIONS!"
+horizontal_alignment = 1
+
+[node name="DeathCounter" parent="." instance=ExtResource("3_wy854")]
+layout_mode = 1
+offset_left = 185.0
+offset_top = 94.0
+offset_right = 310.0
+offset_bottom = 194.0
+
+[node name="TextureRect" parent="DeathCounter" index="1"]
+texture = ExtResource("5_sju5x")
+
+[connection signal="pressed" from="Bg1/menu_button" to="." method="_on_menu_button_pressed"]
+
+[editable path="DeathCounter"]

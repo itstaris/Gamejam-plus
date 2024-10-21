@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=4 uid="uid://bg668vc1434iy"]
+
+[ext_resource type="Texture2D" uid="uid://biswn14kglqcp" path="res://Assets/Tiles/tilemap_chao_16.png" id="1_mn2al"]
+[ext_resource type="PackedScene" uid="uid://bp8s2c1y08la7" path="res://Scenes/Prefabs/Platform.tscn" id="2_6nmt5"]
+[ext_resource type="PackedScene" uid="uid://cha86crar1pcv" path="res://Scenes/Prefabs/BridgeSegment.tscn" id="3_u1pvf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdta3"]
+size = Vector2(480, 48)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sty0t"]
+texture = ExtResource("1_mn2al")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_c8yuq"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_sty0t")
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3i1qy"]
+
+[node name="LevelLayout" type="Node2D"]
+position = Vector2(464, 616)
+
+[node name="DeathBarrier" type="StaticBody2D" parent="." groups=["Traps"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathBarrier"]
+position = Vector2(-224, -320)
+shape = SubResource("RectangleShape2D_rdta3")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." groups=["Ground"]]
+position = Vector2(-432, -904)
+tile_map_data = PackedByteArray("AAD+/yAAAAABAAAAAAD//yAAAAABAAAAAAAAACAAAAABAAAAAAAHAB4AAAABAAAAAAAIAB4AAAABAAAAAAAPACAAAAABAAAAAAAQACAAAAABAAAAAAAXACAAAAABAAAAAAAYACAAAAABAAAAAAAZACAAAAABAAAAAAAaACAAAAABAAAAAAAbACAAAAABAAAAAAAWACAAAAAAAAAAAAAOACAAAAAAAAAAAAAGAB4AAAAAAAAAAAAWABYAAAAAAAAAAAAWABkAAAAAAAIAAAABACAAAAACAAAAAAAJAB4AAAACAAAAAAARACAAAAACAAAAAAAGAB8AAAAAAAEAAAAGACAAAAAAAAEAAAAGACEAAAAAAAEAAAAGACIAAAAAAAEAAAAGACMAAAAAAAEAAAAWACEAAAAAAAEAAAAWACIAAAAAAAEAAAAWACMAAAAAAAEAAAAWABcAAAAAAAEAAAAWABgAAAAAAAEAAAAcABoAAAABAAEAAAAcABsAAAABAAEAAAAcABwAAAABAAEAAAAcAB0AAAABAAEAAAAcAB4AAAABAAEAAAAcAB8AAAABAAEAAAAcABIAAAABAAEAAAAcABMAAAABAAEAAAAcABQAAAABAAEAAAAcABUAAAABAAEAAAD9/xIAAAABAAEAAAD9/xMAAAABAAEAAAD9/xQAAAABAAEAAAD9/xUAAAABAAEAAAD9/xYAAAABAAEAAAD9/xcAAAABAAEAAAD9/xgAAAABAAEAAAD9/xkAAAABAAEAAAD9/xoAAAABAAEAAAD9/xsAAAABAAEAAAD9/xwAAAABAAEAAAD9/x0AAAABAAEAAAD9/x4AAAABAAEAAAD9/x8AAAABAAEAAAAJAB8AAAACAAEAAAAJACAAAAACAAEAAAAJACEAAAACAAEAAAAJACIAAAACAAEAAAAJACMAAAACAAEAAAABACEAAAACAAEAAAABACIAAAACAAEAAAABACMAAAACAAEAAAARACEAAAACAAEAAAARACIAAAACAAEAAAARACMAAAACAAEAAAAOACEAAAAAAAEAAAAOACIAAAAAAAEAAAAOACMAAAAAAAEAAAD+/yMAAAABAAEAAAD//yMAAAABAAEAAAAAACMAAAABAAEAAAAAACIAAAABAAEAAAAAACEAAAABAAEAAAD//yEAAAABAAEAAAD+/yEAAAABAAEAAAD+/yIAAAABAAEAAAD//yIAAAABAAEAAAAHAB8AAAABAAEAAAAHACAAAAABAAEAAAAHACEAAAABAAEAAAAHACIAAAABAAEAAAAHACMAAAABAAEAAAAIACMAAAABAAEAAAAIACIAAAABAAEAAAAIACEAAAABAAEAAAAIACAAAAABAAEAAAAIAB8AAAABAAEAAAAPACEAAAABAAEAAAAPACIAAAABAAEAAAAPACMAAAABAAEAAAAQACMAAAABAAEAAAAQACIAAAABAAEAAAAQACEAAAABAAEAAAAXACEAAAABAAEAAAAYACEAAAABAAEAAAAZACEAAAABAAEAAAAaACEAAAABAAEAAAAbACEAAAABAAEAAAAbACIAAAABAAEAAAAbACMAAAABAAEAAAAaACMAAAABAAEAAAAZACMAAAABAAEAAAAYACMAAAABAAEAAAAXACMAAAABAAEAAAAXACIAAAABAAEAAAAYACIAAAABAAEAAAAZACIAAAABAAEAAAAaACIAAAABAAEAAAAXABcAAAABAAEAAAAYABcAAAABAAEAAAAZABcAAAABAAEAAAAaABcAAAABAAEAAAAbABcAAAABAAEAAAAbABgAAAABAAEAAAAaABgAAAABAAEAAAAZABgAAAABAAEAAAAYABgAAAABAAEAAAAXABgAAAABAAEAAAAXABkAAAABAAIAAAAYABkAAAABAAIAAAAZABkAAAABAAIAAAAaABkAAAABAAIAAAAbABkAAAABAAIAAAAXABYAAAABAAAAAAAYABYAAAABAAAAAAAZABYAAAABAAAAAAAaABYAAAABAAAAAAAbABYAAAABAAAAAAD9/xEAAAABAAEAAAD9/xAAAAABAAEAAAD9/w8AAAABAAEAAAD9/w4AAAABAAEAAAD9/w0AAAABAAEAAAD9/wwAAAABAAEAAAD9/wsAAAABAAEAAAD9/woAAAABAAEAAAAcABEAAAABAAEAAAAcABAAAAABAAEAAAAcAA8AAAABAAEAAAAcAA4AAAABAAEAAAAcAA0AAAABAAEAAAAcAAwAAAABAAEAAAAcAAsAAAABAAEAAAAcAAoAAAABAAEAAAD+/wkAAAABAAEAAAD//wkAAAABAAEAAAAAAAkAAAABAAEAAAABAAkAAAABAAEAAAACAAkAAAABAAEAAAADAAkAAAABAAEAAAAEAAkAAAABAAEAAAAFAAkAAAABAAEAAAAGAAkAAAABAAEAAAAHAAkAAAABAAEAAAAIAAkAAAABAAEAAAAJAAkAAAABAAEAAAAKAAkAAAABAAEAAAALAAkAAAABAAEAAAAMAAkAAAABAAEAAAANAAkAAAABAAEAAAAOAAkAAAABAAEAAAAPAAkAAAABAAEAAAAQAAkAAAABAAEAAAARAAkAAAABAAEAAAASAAkAAAABAAEAAAATAAkAAAABAAEAAAAUAAkAAAABAAEAAAAVAAkAAAABAAEAAAAWAAkAAAABAAEAAAAXAAkAAAABAAEAAAAYAAkAAAABAAEAAAAZAAkAAAABAAEAAAAaAAkAAAABAAEAAAAbAAkAAAABAAEAAAAcABkAAAABAAIAAAAcABgAAAABAAEAAAAcABcAAAABAAEAAAAcABYAAAABAAAAAAAcAAkAAAABAAEAAAD9/wkAAAABAAEAAAAcACAAAAACAAAAAAAcACEAAAACAAEAAAAcACIAAAACAAEAAAAcACMAAAACAAEAAAD9/yAAAAAAAAAAAAD9/yEAAAAAAAEAAAD9/yIAAAAAAAEAAAD9/yMAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_c8yuq")
+
+[node name="plataforma_movel" parent="." instance=ExtResource("2_6nmt5")]
+position = Vector2(-368, -536)
+distance = 120
+move_horizontal = false
+
+[node name="Bridge" type="Node2D" parent="."]
+position = Vector2(-104, -536)
+
+[node name="BridgeSegment" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(16, -8)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment2" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(4, 3)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment3" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-12, 8)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment4" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-28, 11)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment5" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-44, 11)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment6" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-60, 11)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment7" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-76, 8)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment8" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-92, 3)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0
+
+[node name="BridgeSegment9" parent="Bridge" instance=ExtResource("3_u1pvf")]
+position = Vector2(-103, -8)
+physics_material_override = SubResource("PhysicsMaterial_3i1qy")
+time_to_fall = 0.0

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://djdap0d1en6ml"]
+
+[ext_resource type="Texture2D" uid="uid://b7bavabusd4am" path="res://Assets/Backgrounds/bg1.png" id="1_wcvcv"]
+[ext_resource type="Texture2D" uid="uid://cupuo66y5klei" path="res://Assets/Backgrounds/bg2.png" id="2_feeck"]
+
+[node name="Background" type="Node2D"]
+position = Vector2(240, 135)
+
+[node name="Solid" type="Sprite2D" parent="."]
+scale = Vector2(1.18519, 1.18519)
+texture = ExtResource("1_wcvcv")
+
+[node name="Pillars" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_feeck")

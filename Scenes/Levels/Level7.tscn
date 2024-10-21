@@ -1,0 +1,103 @@
+[gd_scene load_steps=19 format=3 uid="uid://dh6bkediuq5af"]
+
+[ext_resource type="Script" path="res://Scripts/LevelBehavior/level_7.gd" id="1_3op1x"]
+[ext_resource type="PackedScene" uid="uid://djdap0d1en6ml" path="res://Scenes/Prefabs/Background.tscn" id="1_gol78"]
+[ext_resource type="PackedScene" uid="uid://6sg551wgh2cq" path="res://Scenes/Prefabs/Door.tscn" id="2_ip43p"]
+[ext_resource type="PackedScene" uid="uid://bditos5277nbw" path="res://Scenes/Interface/DeathScreen.tscn" id="3_wlqcy"]
+[ext_resource type="PackedScene" uid="uid://bg668vc1434iy" path="res://Scenes/Prefabs/LevelLayout.tscn" id="4_pl3o1"]
+[ext_resource type="PackedScene" uid="uid://cnavx6ywmyghh" path="res://Scenes/Prefabs/Princess.tscn" id="5_t2quf"]
+[ext_resource type="PackedScene" uid="uid://duvvflyjce3r1" path="res://Scenes/Prefabs/Player.tscn" id="6_ocupv"]
+[ext_resource type="PackedScene" uid="uid://26lp33ahty17" path="res://Scenes/Interface/DeathCounter.tscn" id="7_5j76i"]
+[ext_resource type="Texture2D" uid="uid://crcs8hm2ownwq" path="res://Assets/Sprites/Knight/PRINCESS/Degolada PB.png" id="8_4g2ti"]
+[ext_resource type="Script" path="res://Scripts/Interface/princess_head.gd" id="9_fgnum"]
+[ext_resource type="FontFile" uid="uid://chbdyqsyg5pxg" path="res://Assets/Fonts/Abaddon_Fonts/Abaddon Bold.ttf" id="10_3oghx"]
+[ext_resource type="Texture2D" uid="uid://cvxlk6mwkkd85" path="res://Assets/Sprites/Misc/lamp.png" id="10_q5jy4"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Palette.gdshader" id="11_fqrj3"]
+[ext_resource type="Texture2D" uid="uid://mtm8d1l32po5" path="res://Assets/Palettes/source_palette.png" id="12_10kv2"]
+[ext_resource type="Texture2D" uid="uid://ddhk5k5b5424l" path="res://Assets/Palettes/blood-crow-1x.png" id="13_slbeg"]
+[ext_resource type="Texture2D" uid="uid://epcnc1uiar71" path="res://Assets/Sprites/Misc/light.png" id="15_hld7o"]
+[ext_resource type="PackedScene" uid="uid://c4hmhd200d3oo" path="res://Scenes/Prefabs/LevelCamera.tscn" id="17_kw7xl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqtvt"]
+shader = ExtResource("11_fqrj3")
+shader_parameter/brightness = 0.0
+shader_parameter/source_palette = ExtResource("12_10kv2")
+shader_parameter/target_palette = ExtResource("13_slbeg")
+
+[node name="Level7" type="Node2D"]
+script = ExtResource("1_3op1x")
+
+[node name="Background" parent="." instance=ExtResource("1_gol78")]
+
+[node name="Door" parent="." instance=ExtResource("2_ip43p")]
+position = Vector2(432, 48)
+next_scene = ExtResource("3_wlqcy")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(24, 184)
+
+[node name="LevelLayout" parent="." instance=ExtResource("4_pl3o1")]
+
+[node name="Princess" parent="." instance=ExtResource("5_t2quf")]
+position = Vector2(416, 208)
+
+[node name="Player" parent="." instance=ExtResource("6_ocupv")]
+position = Vector2(24, 184)
+move_speed = 400.0
+jump_force = 400.0
+friction = 0.0
+
+[node name="DeathCounter" parent="." instance=ExtResource("7_5j76i")]
+offset_left = 0.0
+offset_top = -16.0
+offset_right = 125.0
+offset_bottom = 84.0
+
+[node name="PrincessHead" type="Sprite2D" parent="."]
+position = Vector2(460, 22)
+texture = ExtResource("8_4g2ti")
+script = ExtResource("9_fgnum")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(224, 32)
+texture = ExtResource("10_q5jy4")
+hframes = 3
+
+[node name="LevelTitle" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 26.0
+offset_top = 119.0
+offset_right = 184.0
+offset_bottom = 147.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("10_3oghx")
+theme_override_font_sizes/normal_font_size = 24
+text = "Speed of light"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Palette" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_tqtvt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="CanvasModulate"]
+position = Vector2(224, 65)
+scale = Vector2(0.84, 0.51)
+range_z_min = 0
+range_z_max = 0
+texture = ExtResource("15_hld7o")
+offset = Vector2(0, 200)
+
+[node name="LevelCamera" parent="." instance=ExtResource("17_kw7xl")]
+unique_name_in_owner = true
